@@ -46,6 +46,7 @@ for l=1:number_of_lectures
     idx2 = randperm(length(class_final)); % second round
     std_per_group = floor(length(class_final)/number_of_groups);
     for g=1:number_of_groups
+        % Takes care of different number of students per group
         if g == number_of_groups
             students_r1 = class_final(idx1(1+(g-1)*std_per_group:end));
             students_r2 = class_final(idx2(1+(g-1)*std_per_group:end));
