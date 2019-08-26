@@ -18,10 +18,19 @@ function score_file = create_fake_scores(number_of_students, number_of_groups, n
 %       that a random number of students between 0 and 20% of the class is
 %       not present each day.
 %
+%   Ouputs:
+%   score_file: a matlab structure containing the fields=>
+%      score_file.(lecture_number).(quiz_version).(group_name).(students)
+%      score_file.(lecture_number).(quiz_version).(group_name).(grades)
+%      score_file. players = player_ids
+%
+% Jessica de Abreu - jxd484@case.edu
+
 student_ids = 1:number_of_students;
 max_missing = ceil(number_of_students * 0.2);
 % The first ids will be the players
 players = 1:number_of_players;
+score_file.players = players;
 
 for l=1:number_of_lectures
     lecture_name = strcat('lecture', num2str(l));
