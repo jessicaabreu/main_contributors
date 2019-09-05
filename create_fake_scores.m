@@ -63,16 +63,20 @@ for l=1:number_of_lectures
         % distributions centered in 5, with std 1.5
         % If a player is in the team, the score is higher
         idx_player_1 = ismember(students_r1, players);
-        grades_1 = normrnd(5 + increase_per_player * nnz(idx_player_1) * 5, ...
-            1.5,[1,length(students_r1)]);
+        avg1 = 5;
+        std1 = 1.0;
+        grades_1 = normrnd(avg1 + increase_per_player * nnz(idx_player_1) * avg1, ...
+            std1,[1,length(students_r1)]);
         score_file.(lecture_name).('r1').(strcat('group', num2str(g))). ...
             grades = grades_1;
         % For the second round, grades will be randomly selected from normal
         % distributions centered in 7, with std 1.0
         % If a player is in the team, the score is higher
         idx_player_2 = ismember(students_r2, players);
-        grades_2 = normrnd(5 + increase_per_player * nnz(idx_player_2) * 5, ...
-            1.5,[1,length(students_r2)]);
+        avg2 = 7;
+        std2 = 1.0;
+        grades_2 = normrnd(avg2+ increase_per_player * nnz(idx_player_2) * avg2, ...
+            std2,[1,length(students_r2)]);
         score_file.(lecture_name).('r2').(strcat('group', num2str(g))). ...
             grades = grades_2;
     end
