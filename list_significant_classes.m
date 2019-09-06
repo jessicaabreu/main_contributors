@@ -1,15 +1,13 @@
-function significant_classes_scores = list_significant_classes(score_file)
+function significant_groups_scores = list_significant_groups(score_file)
 %% Function to select data from classes that have a significantly higher average
 %   Inputs:
 %       score_file (matlab struct):
 %           score_file.(lecture_number).(quiz_version).(group_name).(students)
 %           score_file.(lecture_number).(quiz_version).(group_name).(grades)
-%           score_file.players = player_ids
 %   Outputs:
-%       significant_classes_scores (matlab struct):
-%          significant_classes_scores.(lecture_number).(quiz_version).(group_name).(students)
-%           significant_classes_scores.(lecture_number).(quiz_version).(group_name).(grades)
-%           significant_classes_scores.players = player_ids
+%       significant_groups_scores (matlab struct):
+%          significant_groups_scores.(lecture_number).(quiz_version).(group_name).(students)
+%           significant_groups_scores.(lecture_number).(quiz_version).(group_name).(grades)
 %
 % Jessica de Abreu - jxd484@case.edu
 %%
@@ -38,11 +36,12 @@ for l=1:length(lectures)
                 g_max = [g_max nms(m(:, 1) == max(m(significant_pairs(i, :))))];
             end
             g_max = unique(g_max);
+            % Storing data from groups that have higher average
             for g=1:length(g_max)
-                significant_classes_scores.(char(lectures(l))).(char(quiz_versions(q))). ...
+                significant_groups_scores.(char(lectures(l))).(char(quiz_versions(q))). ...
                     (char(g_max(g))).grades =  score_file.(char(lectures(l))). ...
                     (char(quiz_versions(q))).(char(g_max(g))).grades;
-                significant_classes_scores.(char(lectures(l))).(char(quiz_versions(q))). ...
+                significant_groups_scores.(char(lectures(l))).(char(quiz_versions(q))). ...
                     (char(g_max(g))).students =  score_file.(char(lectures(l))). ...
                     (char(quiz_versions(q))).(char(g_max(g))).students;
             end
